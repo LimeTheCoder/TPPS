@@ -2,13 +2,10 @@ package com.limethecoder.model;
 
 import java.io.PrintWriter;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Simulator {
     private Map<Position, City> cities = new HashMap<>();
     private Map<Integer, Country> countries = new HashMap<>();
-    private Map<City, List<City>> citiesNeighbours = new HashMap<>();
 
     public void simulate() {
         int count = 0;
@@ -73,8 +70,8 @@ public class Simulator {
     }
 
     private void doTransactionsWithNeighbours() {
-        for (City city : citiesNeighbours.keySet()) {
-            for (City neighbour : citiesNeighbours.get(city)) {
+        for (City city : cities.values()) {
+            for (City neighbour : city.getNeighbors()) {
                 for (Country country : countries.values()) {
                     sendMoney(city, neighbour, country);
                 }
@@ -88,13 +85,6 @@ public class Simulator {
     }
 
     private void initNeighbors(){
-        for(City city : cities.values()) {
-            Position position = city.getPosition();
-            Stream.of(position.north(), position.south(), position.east(), position.west())
-                    .map(cities::get)
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.collectingAndThen(Collectors.toList(),
-                            neighbours -> citiesNeighbours.put(city, neighbours)));
-        }
+        cities.values().forEach(city -> city.initNeighbors(cities));
     }
 }

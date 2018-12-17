@@ -3,14 +3,11 @@ package com.limethecoder.model;
 import lombok.Getter;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,6 +19,7 @@ public class City {
 
     private Position position;
     private Country country;
+    private List<City> neighbors;
 
     private Map<Country,Integer> currentBalance;
     private Map<Country,Integer> incomingBalance;
@@ -65,5 +63,12 @@ public class City {
         for(Country key : currentBalance.keySet()){
             amountToPay.put(key, currentBalance.get(key) / DEFAULT_DENOMINATOR);
         }
+    }
+
+    public void initNeighbors(Map<Position, City> cities){
+        neighbors = Stream.of(position.north(), position.south(), position.east(), position.west())
+                .map(cities::get)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 }

@@ -11,9 +11,12 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Runner {
+    private static final String INPUT_FILE = "src/main/resources/in.txt";
+    private static final String OUTPUT_FILE = "src/main/resources/out.txt";
+
     public static void main(String[] args) throws FileNotFoundException {
-        try(Scanner scanner = new Scanner(new File("src/main/resources/in.txt"));
-            PrintWriter writer = new PrintWriter(new File("src/main/resources/out.txt"))) {
+        try(Scanner scanner = new Scanner(new File(INPUT_FILE));
+            PrintWriter writer = new PrintWriter(new File(OUTPUT_FILE))) {
             int line = 1;
             while (scanner.hasNextLine()){
                 Simulator simulator = scanNextTextSuit(scanner);

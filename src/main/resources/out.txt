@@ -3,7 +3,9 @@ Spain 382
 Portugal 416
 France 1325
 Test case # 2
+Wrong input!
+Test case # 2
 Luxembourg 0
 Test case # 3
-Belgium 2
-Netherlands 2
+Belgium 1
+Netherlands 636

@@ -36,7 +36,7 @@ public class Simulator {
         }
     }
 
-    public boolean isCoordinatesValid() {
+    public boolean isPositionValid() {
         return countries.values().stream().allMatch(Country::isPositionValid);
     }
 

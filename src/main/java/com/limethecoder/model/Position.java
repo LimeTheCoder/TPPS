@@ -10,9 +10,6 @@ import lombok.experimental.Wither;
 @Getter
 @Wither
 public class Position {
-    private static final int MAX_POS = 9;
-    private static final int MIN_POS = 0;
-
     private int x;
     private int y;
 
@@ -33,6 +30,6 @@ public class Position {
     }
 
     public boolean isValidPosition() {
-        return x >= MIN_POS && x <= MAX_POS && y >= MIN_POS && y <= MAX_POS;
+        return x >= ConstantsHolder.MIN_POS && x <= ConstantsHolder.MAX_POS && y >= ConstantsHolder.MIN_POS && y <= ConstantsHolder.MAX_POS;
     }
 }

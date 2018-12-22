@@ -41,7 +41,7 @@ public class Runner {
     }
 
     private static void process(Simulator simulator, PrintWriter writer, int line) {
-        if(!simulator.isCoordinatesValid()) {
+        if(!simulator.isPositionValid()) {
             writer.println("Test case # " + line);
             writer.println("Wrong input!");
         }
